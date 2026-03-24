@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/CinephileSanctuary/static/css/main.5137825e.css",
-    "main.js": "/CinephileSanctuary/static/js/main.2c90bd56.js",
-    "static/js/453.a35cd9c4.chunk.js": "/CinephileSanctuary/static/js/453.a35cd9c4.chunk.js",
-    "static/media/C (1).png": "/CinephileSanctuary/static/media/C (1).c91d9e8276b71cbf3dee.png",
-    "static/media/background.jpg": "/CinephileSanctuary/static/media/background.655cd494cad4b5bbc0e1.jpg",
-    "static/media/background-banner.webp": "/CinephileSanctuary/static/media/background-banner.435ec134161a54b85de8.webp",
-    "static/media/ff-card1.webp": "/CinephileSanctuary/static/media/ff-card1.5fc93062ed58c0ae306b.webp",
-    "static/media/tg-card.webp": "/CinephileSanctuary/static/media/tg-card.d1cb22039feb43a95ae1.webp",
-    "static/media/ttyd-card.webp": "/CinephileSanctuary/static/media/ttyd-card.288fdf890c3a34821e7a.webp",
-    "index.html": "/CinephileSanctuary/index.html",
-    "main.5137825e.css.map": "/CinephileSanctuary/static/css/main.5137825e.css.map",
-    "main.2c90bd56.js.map": "/CinephileSanctuary/static/js/main.2c90bd56.js.map",
-    "453.a35cd9c4.chunk.js.map": "/CinephileSanctuary/static/js/453.a35cd9c4.chunk.js.map"
+    "main.css": "/static/css/main.4e328599.css",
+    "main.js": "/static/js/main.3ca6e73e.js",
+    "static/js/453.a35cd9c4.chunk.js": "/static/js/453.a35cd9c4.chunk.js",
+    "static/media/C (1).png": "/static/media/C (1).c91d9e8276b71cbf3dee.png",
+    "static/media/background.jpg": "/static/media/background.655cd494cad4b5bbc0e1.jpg",
+    "static/media/background-banner.webp": "/static/media/background-banner.435ec134161a54b85de8.webp",
+    "static/media/ff-card1.webp": "/static/media/ff-card1.5fc93062ed58c0ae306b.webp",
+    "static/media/tg-card.webp": "/static/media/tg-card.d1cb22039feb43a95ae1.webp",
+    "static/media/ttyd-card.webp": "/static/media/ttyd-card.288fdf890c3a34821e7a.webp",
+    "index.html": "/index.html",
+    "main.4e328599.css.map": "/static/css/main.4e328599.css.map",
+    "main.3ca6e73e.js.map": "/static/js/main.3ca6e73e.js.map",
+    "453.a35cd9c4.chunk.js.map": "/static/js/453.a35cd9c4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5137825e.css",
-    "static/js/main.2c90bd56.js"
+    "static/css/main.4e328599.css",
+    "static/js/main.3ca6e73e.js"
   ]
 }
