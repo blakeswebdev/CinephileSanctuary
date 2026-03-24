@@ -1,0 +1,42 @@
+.movies-grid {
+ display: flex;
+ flex-wrap: wrap;
+    gap: 20px;
+}
+
+.watchlist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.remove-btn {
+    background-color: #910505;
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.watchlist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+    justify-content: center;
+}
+
+.watchlist-title {
+    margin-top: 40px;
+    margin-bottom: 64px;
+}

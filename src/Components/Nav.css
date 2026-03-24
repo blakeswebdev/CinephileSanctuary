@@ -1,0 +1,99 @@
+
+.title__logo-img{
+   max-width: 40px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.title{
+    display: flex;
+    padding: 28px;
+
+}
+
+.title__logo{
+    font-size: 20px;
+    font-weight: 900;
+    color: #c5a059;
+    padding-left: 8px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.nav__container{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 32px;
+    background-color: black;
+}
+
+.nav__links{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+}
+
+.nav__list{
+    padding: 16px;
+}
+
+.nav__link{
+    text-decoration: none;
+    font-size: 12px;
+  font-weight: 600;
+  color: #c5a059;
+}
+
+.nav__link:hover{
+    text-decoration: underline;
+    
+}
+
+.btn__menu{
+    padding: 8px 16px;
+  border: 2px solid #c5a059;
+  border-radius: 24px;
+  background-color: #c5a059;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn__menu:hover {
+  background-color: white;
+  color: #c5a059;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.list-dropdown{
+    background-color: black;
+    color: #c5a059;
+    border-color: #c5a059;
+    border: 5px;
+    padding: 0 20px 0 0;
+    font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .nav__list {
+        display: none;
+
+    }
+
+    .watchlist {
+        display: block;
+    }
+
+    
+}
+
+@media (max-width: 550px) {
+    .btn__menu {
+        padding: 4px 8px;
+        font: 10px;
+    }
+
+    
+}

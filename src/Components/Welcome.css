@@ -1,0 +1,93 @@
+.gold {
+    color: #c5a059;
+}
+
+.search-section {
+    padding-top: 48px;
+    display: flex;
+    justify-content: center;
+}
+
+.search_caption {
+    padding: 8px 0px;
+    padding-bottom: 32px;
+}
+
+.search-para {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.search-text {
+    padding: 12px;
+    border-radius: 12px;
+}
+
+.search-btn {
+    margin: 0 28px;
+    border-radius: 12px;
+}
+
+.search-inputs {
+    display: flex;
+    justify-content: center;
+
+}
+
+.container {
+    margin: 80px 40px;
+    background-color: black;
+    border-radius: 16px;
+}
+
+.background-img {
+    margin-top: 80px;
+    position: absolute;  
+    inset: 0;
+    opacity: 40%;
+    background-size: cover;
+    z-index: -1;
+}
+
+.discover {
+    padding-top: 40px;
+}
+
+.movie {
+    margin: 64px 24px;
+    padding-bottom: 64px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 40px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.movie:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: transform 0.2s ease;
+}
+
+.movie-card {
+    width: 80px;
+
+}
+
+.movie-card {
+    display: flex;
+    
+}
+
+p {
+    font-size: 12px;
+}
+
+@media (max-width: 550px) {
+    .search-para {
+    font-size: 32px;
+    font-weight: 800;
+}
+}

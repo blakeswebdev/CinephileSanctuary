@@ -1,0 +1,28 @@
+.footer__row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:48px;
+    
+}
+
+.footer__logo {
+    display: flex;
+}
+
+.footer__logo-img {
+    width: 64px;
+    filter: grayscale(1) invert(1);
+}
+
+.footer_link, .footer_copy {
+    color: #fff;
+}
+
+.footer_list {
+    margin: 20px 0 24px 0;
+}
+
+.footer_link {
+    padding: 20px 8px;
+}
