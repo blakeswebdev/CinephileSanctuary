@@ -16,10 +16,6 @@ const Welcome = () => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const navigate = useNavigate(); 
- 
-
-    
-    
     const handleSearchRedirect = (e) => {
         if (e) e.preventDefault();
         if(!searchTerm) return;
