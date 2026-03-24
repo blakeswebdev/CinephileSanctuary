@@ -11,7 +11,7 @@ import Watchlist from './Components/Watchlist';
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Routes>
       <Route path='/' element={<Welcome/>}/>
       <Route path='/home' element={<Home/>}/>
