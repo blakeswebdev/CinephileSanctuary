@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import './MovieDetail.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,12 +11,49 @@ import { collection, query, where, onSnapshot, orderBy, serverTimestamp, addDoc 
 
 
 const MovieDetail = () => {
-    const {id} = useParams();
+    const { id } = useParams();
+    const [img, setImage] = useState();
     const navigate = useNavigate();
     const [movie, setMovie] = useState(null);
+    const [loading, setLoading] = useState(true);
     const [showTrailer, setShowTrailer] = useState(false);
     const [trailerKey, setTrailerKey] = useState(null);
     const [reviews, setReviews] = useState([]);
+
+    const mountedRef = useRef(true);
+
+    useEffect(() => {
+        mountedRef.current = true;
+        return () => { mountedRef.current = false; };
+    }, []);
+
+    useEffect(() => {
+        if (movie && movie.poster_path) {
+            setLoading(false);
+            return;
+        }
+        
+        
+        
+            if (movie && movie.poster_path) {
+
+        const image = new Image();
+        image.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        image.onload = () => {
+            setTimeout(() => {
+                if (mountedRef.current){
+                setImage(image);
+                setLoading(false);
+            }
+        }, 300);            
+        };
+    }
+        return () => {
+            mountedRef.current = false;
+        };
+    }, [movie]);
+
+
     const addToWatchlist = async () => {
         if (!auth.currentUser) {
             alert("Please log in to add movies to your watchlist.");
@@ -33,13 +70,13 @@ const MovieDetail = () => {
             });
             alert(`${movie.title} added to your watchlist`);
         }
-     catch (error) {
-        console.error("Error adding to watchlist", error);
-        alert("Coulf not add to watchlist. Please try again.");
-    }
-};
+        catch (error) {
+            console.error("Error adding to watchlist", error);
+            alert("Coulf not add to watchlist. Please try again.");
+        }
+    };
 
-     useEffect(() => {
+    useEffect(() => {
         const q = query(
             collection(db, "reviews"),
             where("movieId", "==", id),
@@ -48,7 +85,7 @@ const MovieDetail = () => {
 
         const unsubscribe = onSnapshot(q, (snapshot) => {
             const reviewsData = snapshot.docs.map(doc => ({
-                id:doc.id,
+                id: doc.id,
                 ...doc.data()
             }));
             setReviews(reviewsData);
@@ -57,7 +94,10 @@ const MovieDetail = () => {
         return () => unsubscribe();
     }, [id]);
 
+
     useEffect(() => {
+        setLoading(true);
+
         const options = {
             method: 'GET',
             headers: {
@@ -70,22 +110,39 @@ const MovieDetail = () => {
             .then(res => res.json())
             .then(data => {
                 setMovie(data);
-            const trailer = data.videos.results.find(vid => vid.type ==="Trailer" && vid.site === "YouTube");
-            setTrailerKey(trailer ? trailer.key : null);
-    })
-            .catch(err => console.error(err));
-    }, [id]);
+                const trailer = data.videos.results.find(vid => vid.type === "Trailer" && vid.site === "YouTube");
+                setTrailerKey(trailer ? trailer.key : null);
+            if (data.poster_path) {
+                const image = new Image();
+                image.src = `https://image.tmdb.org/t/p/w500${data.poster_path}`;
+                image.onload = () => {
+                    if (mountedRef.current) setLoading(false);
+                };
+                image.onerror = () => {
+                    if (mountedRef.current) setLoading(false);
+                };
+            } else {
 
-    if (!movie) {
-        return  <p>Loading movie details...</p>;
-}
+                setLoading(false);
+            }
+         
+   
+            })
+            .catch(err => { 
+                console.error(err);
+            if (mountedRef.current) setLoading(false);
+});
+   
+return() => { mountedRef.current = false; };}, [id]);
 
 
     return (
         <>
-        <Nav />
+            <Nav />
             <div className="movie-detail">
-                <div className="img-wrapper" onClick={() => setShowTrailer(true)}>
+                {movie && !loading ? (
+                     <> 
+                     <div className="img-wrapper" onClick={() => setShowTrailer(true)}>
                 <img className="movie-img" src={movie.poster_path 
                             ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` 
                             : `https://image.tmdb.org/t/p/w500x750?text=No+Poster+Available`} 
@@ -99,7 +156,7 @@ const MovieDetail = () => {
                     <h1 className="movie-title" >{movie.title}</h1>
                     <p className="movie-release" ><strong>Release Date:</strong> {(movie.release_date)}</p>
                     <p className="movie-rating" ><strong>Rating:</strong> {(movie.vote_average).toFixed(1)} /10</p>
-                    <p className="movie-rating" ><strong>Runtime:</strong> {(movie.runtime)+" minutes"}</p>
+                    <p className="movie-runtime" ><strong>Runtime:</strong> {(movie.runtime)+" minutes"}</p>
                     <p className="movie-over" >{movie.overview}</p>
                     <div className="movie__btns" >
 
@@ -109,47 +166,66 @@ const MovieDetail = () => {
         </Link>
         </div>
                 </div>
-            </div>
-        {showTrailer && trailerKey && (
-            <div className="video-modal" onClick={() => setShowTrailer(false)} >
-                <div className="modal-content">
-                    <iframe
-                    width="100%"
-                    height="100%" 
-                    src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`} 
-                    title="YouTube video player"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    ></iframe>
-                    <button className="close-btn" >Close</button>
+</> ) : (
+    <><div className="img-wrapper">
+                    <div className="movie__img--skeleton"></div>
                 </div>
-            </div>
-        )}
 
-        <div className="movie-reviews-list">
-            <h3>User Reviews</h3>
-            {reviews.length > 0 ? (
-                reviews.map((rev) => (
-                    <div key={rev.id} className="review-item">
-                        <div className="review-header">
-                            <strong>{rev.userName}</strong>
-                            <span className="stars" >{"⭐".repeat(rev.rating)}</span>
-                            </div> 
+                <div className="info">
+                    <div className="movie__title--skeleton"></div>
+                    <div className="movie__release--skeleton"></div>
+                    <div className="movie__rating--skeleton"></div>
+                    <div className="movie__runtime--skeleton"></div>
+                    <div className="movie__over--skeleton"></div>
+
+                    <div className="movie__btns">
+                        <div className="watchlist__btn--skeleton"></div>
+                        <div className="rate__btn--skeleton"></div>
+                    </div>
+                </div></>
+                )}
+                    
+            </div>
+            {showTrailer && trailerKey && (
+                <div className="video-modal" onClick={() => setShowTrailer(false)} >
+                    <div className="modal-content">
+                        <iframe
+                            width="100%"
+                            height="100%"
+                            src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1`}
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        ></iframe>
+                        <button className="close-btn" >Close</button>
+                    </div>
+                </div>
+            )}
+
+            <div className="movie-reviews-list">
+                <h3>User Reviews</h3>
+                {reviews.length > 0 ? (
+                    reviews.map((rev) => (
+                        <div key={rev.id} className="review-item">
+                            <div className="review-header">
+                                <strong>{rev.userName}</strong>
+                                <span className="stars" >{"⭐".repeat(rev.rating)}</span>
+                            </div>
                             <p>{rev.comment}</p>
                             <small>{rev.createdAt?.toDate().toLocaleDateString()}</small>
-                            </div>
-                ))
-            ) : (
-                <p>No reviews yet. Be the first!</p>
-            )}
-        </div>
-        
-        <Footer />
-        </> 
+                        </div>
+                    ))
+                ) : (
+                    <p>No reviews yet. Be the first!</p>
+                )}
+            </div>
+
+            <Footer />
+        </>
     )
 
-    }
+}
 
 
 

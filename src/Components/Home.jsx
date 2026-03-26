@@ -59,7 +59,7 @@ fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(quer
                     onChange={(e) => setSearchTerm(e.target.value)}/>
                     <button className='search-btn' type="submit" >Search</button>
                 </form>
-            
+          
             <TitleCards className="search__title" results={results} title="Search Results" />
         </div>
         <Footer />

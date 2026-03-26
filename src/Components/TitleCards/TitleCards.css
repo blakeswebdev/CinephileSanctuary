@@ -32,6 +32,12 @@
     text-decoration: none;
     color: inherit;
     display: block;
+    animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .card-img {
@@ -46,9 +52,28 @@
     margin: 0;
     font-size: 1.1rem;
     text-align: center;
-    font-weight: bold;
+    font-weight: bold;    
+}
+
+
+
+.movie__img--skeleton {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+background-color: rgb(204,204,204);
+margin-bottom: 8px;
     
 }
+
+.movie__title--skeleton {
+    height: 21px;
+    width: 100%;
+    max-width: 250px;
+    background-color: rgb(241, 237, 237) !important;
+    margin-bottom: 8px;
+}
+
+
 
 @media (max-width: 900px) {
     .card-list{

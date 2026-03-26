@@ -1,7 +1,9 @@
 {
   "name": "movie-site",
   "version": "0.1.0",
-  "homepage": "",
+   "homepage": "https://blakeswebdev.github.io/CinephileSanctuary",
+
+
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
@@ -17,7 +19,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
+  "scripts": { 
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
